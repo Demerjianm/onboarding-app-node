@@ -8,13 +8,6 @@ const helmet = require("helmet")
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-// app.use(
-//   helmet({
-//     frameguard: {
-//       action: 'deny'
-//     }
-//   })
-// )
 
 // const pdfs = require('./routes/pdfBuild')
 // const config = require('./routes/config')
