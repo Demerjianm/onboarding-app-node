@@ -1,6 +1,5 @@
 var express = require("express")
 const app = express()
-const path = require("path")
 var pdfFiller = require("pdffiller-stream")
 let fs = require("fs")
 var bodyParser = require("body-parser")
@@ -9,15 +8,7 @@ const helmet = require("helmet")
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// const pdfs = require('./routes/pdfBuild')
-// const config = require('./routes/config')
-
-// app.use('/api/pdfBuild', pdfs)
-// app.use('/api/config', config)
-
 app.use(function(req, res, next) {
-  // res.set('X-Frame-Options', 'DENY')
-  // res.set('Content-Security-Policy', "frame-ancestors 'none';")
   res.header("Access-Control-Allow-Origin", "*")
   res.header(
     "Access-Control-Allow-Headers",
@@ -29,12 +20,12 @@ app.use(function(req, res, next) {
   )
   next()
 })
+//this handles the post from the onboarding app
 app.post("/pdf", function(req, res) {
-  // console.log(req.body)
-  // console.log(req.headers)
   this.runThrough(req, res)
-  //
 })
+
+//this builds the w4
 buildW4 = data => {
   let firstName = data.firstName ? data.firstName : ""
   let middleName = data.middleName ? data.middleName : ""
@@ -106,6 +97,7 @@ buildW4 = data => {
   return w4Data
 }
 
+//this builds the i9
 buildI9 = data => {
   const i9Data = {
     Lname: data.i9lastName ? data.i9lastName : "",
@@ -188,23 +180,14 @@ buildI9 = data => {
 
 const sourceFDF = "./test/i9.pdf"
 
-// Override the default field name regex. Default: /FieldName: ([^\n]*)/
 const nameRegex = null
 const shouldFlatten = false
-//
-//const FDF_data = pdfFiller
-//  .generateFDFTemplate(sourceFDF, nameRegex)
-//  .then(fdfData => {
-//    console.log(fdfData)
-//  })
-//  .catch(err => {
-//    console.log(err)
-//  })
 
 app.get("/hello", function(res, res) {
   res.send(200)
 })
 
+//this handles deciding the function and which document to merge data with
 runThrough = (req, res) => {
   let { doc, detail } = req.body
   console.log(doc, detail)
