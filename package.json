@@ -1,0 +1,16 @@
+{
+  "name": "pdf-testing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node -r dotenv/config app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "date-fns": "^1.29.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.2",
+    "helmet": "^3.13.0",
+    "pdffiller-stream": "^0.2.0"
+  }
+}
