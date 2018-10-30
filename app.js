@@ -238,4 +238,6 @@ runThrough = (req, res) => {
     })
 }
 
-module.exports = app
+app.listen(process.env.PORT || 3000, function() {
+  console.log("The app is running on port 3000")
+})
