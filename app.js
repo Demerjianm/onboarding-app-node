@@ -30,8 +30,8 @@ app.use(function(req, res, next) {
   next()
 })
 app.post("/pdf", function(req, res) {
-  console.log(req.body)
-  console.log(req.headers)
+  // console.log(req.body)
+  // console.log(req.headers)
   this.runThrough(req, res)
   //
 })
@@ -221,9 +221,10 @@ runThrough = (req, res) => {
       if (fs.existsSync("wook.pdf")) {
         var file = fs.createReadStream("wook.pdf")
         var stat = fs.statSync("wook.pdf")
+        console.log(stat)
         console.log("file", file)
         res.header("Access-Control-Allow-Origin", "*")
-
+        console.log(file)
         res.setHeader("Content-Length", stat.size)
         res.setHeader("Content-Type", "application/pdf")
         res.setHeader("Content-Disposition", "attachment; filename=quote.pdf")
