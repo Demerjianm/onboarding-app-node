@@ -211,7 +211,7 @@ runThrough = (req, res) => {
         res.setHeader("Content-Length", stat.size)
         res.setHeader("Content-Type", "application/pdf")
         res.setHeader("Content-Disposition", "attachment; filename=quote.pdf")
-        // fs.unlinkSync('wook.pdf')
+        fs.unlinkSync("wook.pdf")
         file.pipe(res)
       } else {
         console.log("cant find file")
