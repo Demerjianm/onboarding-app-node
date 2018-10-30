@@ -190,7 +190,6 @@ app.get("/hello", function(res, res) {
 //this handles deciding the function and which document to merge data with
 runThrough = (req, res) => {
   let { doc, detail } = req.body
-  console.log(doc, detail)
   var sourcePDF
   var data
 
@@ -204,10 +203,7 @@ runThrough = (req, res) => {
       if (fs.existsSync("wook.pdf")) {
         var file = fs.createReadStream("wook.pdf")
         var stat = fs.statSync("wook.pdf")
-        console.log(stat)
-        console.log("file", file)
         res.header("Access-Control-Allow-Origin", "*")
-        console.log(file)
         res.setHeader("Content-Length", stat.size)
         res.setHeader("Content-Type", "application/pdf")
         res.setHeader("Content-Disposition", "attachment; filename=quote.pdf")
